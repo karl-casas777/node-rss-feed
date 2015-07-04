@@ -1,0 +1,105 @@
+/* @todo make responsive */
+.rss-header {
+    border-bottom: solid 2px #f0f0f0;
+    height: 100px;
+    font-family: Helvetica;
+}
+.rss-header .rss-logo {
+    border-right: solid 1px #f0f0f0;
+    padding: 0 9px 0 0;
+    margin: 0 75px 0 230px;
+    position: relative;
+    top: 24px;
+    width: 45px;
+    height: 45px;
+}
+.rss-header .rss-search {
+    position: relative;
+    top: 6px;
+    width: 300px;
+    height: 35px;
+    border-radius: 3px;
+    border: solid 1px #f0f0f0;
+    background: #f0f0f0;
+}
+input.focus-none:focus {
+    outline: none;
+}
+ul.rss-feeds {
+    list-style-type: none;
+}
+.rss-feeds {
+    width: 100%;
+    padding: 0;
+    display: table;
+}
+.rss-item {
+    display: table-row;
+}
+.rss-container {
+    width: 820px;
+    margin: 0 230px;
+    font-family: Helvetica;
+}
+.rss-load-more {
+    width: 820px;
+    height: 65px;
+    display: table-cell;
+    background: #f4f4f2;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: middle;
+}
+.custom-link {
+    text-decoration: none;
+    color: #e2482c;
+}
+.rss-load-more .fa-refresh {
+    margin: 0 10px;
+}
+.rss-like {
+    display: table-cell;
+    width: 6%;
+    height: 75px;
+    border: solid 1.5px #e6e6e6;
+    border-radius: 2px;
+    vertical-align: top;
+    font-weight: bold;
+    font-size: 20px;
+}
+.rss-like a {
+    display: block;
+    height: 35px;
+    border-bottom: solid 1.5px #f0f0f0;
+}
+.rss-like span {
+    text-align: center;
+    top: 12%;
+    position: relative;
+}
+.rss-like .fa-angle-up {
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
+}
+.rss-like span {
+    display: block;
+}
+.rss-content {
+    display: table-cell;
+    padding: 0 0 0 20px;
+    font-weight: lighter;
+}
+.rss-content * {
+    margin: 0;
+}
+.rss-content h5 {
+    color: #cacaca;
+    margin: 0 0 6px;
+    font-size: 10px;
+}
+.rss-content p {
+    font-size: 22px;
+}

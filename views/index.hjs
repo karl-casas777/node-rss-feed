@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/stylesheets/rss.css">
+        <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
+        <title>Untitled</title>
+    </head>
+    <body>
+        <div class="rss-header">
+            <img class="rss-logo" src="images/ux.png" alt="ux">
+            <input class="rss-search focus-none" type="text">
+        </div>
+        <div class="rss-container">
+            <ul class="rss-feeds">
+                <li class="rss-item">
+                    <div class="rss-like">
+                        <a class="custom-link" href="#"><i class="fa fa-angle-up"></i></a>
+                        <span>11</span>
+                    </div>
+                    <div class="rss-content">
+                        <h5>MEDIUM.COM</h5>
+                        <p>
+                            Want people to use your product? Use it yourself.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+            <a class="rss-load-more custom-link" href="#"><i class="fa fa-refresh"></i>Load more</a>
+        </div>
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="socket.io/socket.io.js"></script>
+    </body>
+</html>

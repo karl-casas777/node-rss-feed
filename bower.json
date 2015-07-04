@@ -1,0 +1,19 @@
+{
+  "name": "node-rss-feed",
+  "version": "0.0.0",
+  "authors": [
+    "krain143 <karl.casas777@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fontawesome": "~4.3.0",
+    "jquery": "~2.1.4"
+  }
+}
