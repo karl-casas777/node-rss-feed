@@ -50,6 +50,7 @@ var FeedParser = require('feedparser')
           title: item.title,
           link: item.link,
           guid: item.guid,
+          date: item.pubDate,
           likes: []
         };
         rssFeeds.config.database.insert(row);

@@ -52,8 +52,11 @@ var rssNosql = {
         var sortInt = 0;
         for (var column in sortBy) {
           if (sortBy.hasOwnProperty(column)) {
-            sortInt = (a[column] < b[column]) ? -sortBy[column] : sortBy[column];
-            if (a[column] != b[column]) break;
+            var av = typeof a[column] == typeof [] ? a[column].length: a[column];
+            var bv = typeof b[column] == typeof [] ? b[column].length: b[column];
+
+            sortInt = (av < bv) ? -sortBy[column] : sortBy[column];
+            if (av != bv) break;
           }
         }
 
