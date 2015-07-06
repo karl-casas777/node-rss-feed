@@ -14,23 +14,11 @@
             <input class="rss-search focus-none" type="text">
         </div>
         <div class="rss-container">
-            <ul class="rss-feeds">
-                <li class="rss-item">
-                    <div class="rss-like">
-                        <a class="custom-link" href="#"><i class="fa fa-angle-up"></i></a>
-                        <span>11</span>
-                    </div>
-                    <div class="rss-content">
-                        <h5>MEDIUM.COM</h5>
-                        <p>
-                            Want people to use your product? Use it yourself.
-                        </p>
-                    </div>
-                </li>
-            </ul>
+            <ul class="rss-feeds"></ul>
             <a class="rss-load-more custom-link" href="#"><i class="fa fa-refresh"></i>Load more</a>
         </div>
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="socket.io/socket.io.js"></script>
+        <script src="/javascripts/main.js"></script>
     </body>
 </html>

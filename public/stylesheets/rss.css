@@ -103,3 +103,7 @@ ul.rss-feeds {
 .rss-content p {
     font-size: 22px;
 }
+.rss-item-title a {
+    text-decoration: none;
+    color: black;
+}
