@@ -3,7 +3,6 @@ var rssFeeds = require('./rss-feeds')
   , db = rssFeeds.config.database;
 rssFeeds.autoUpdate(true);
 
-
 module.exports = function(server) {
   var io = require('socket.io')(server);
 

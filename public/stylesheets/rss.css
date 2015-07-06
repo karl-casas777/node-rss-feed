@@ -77,7 +77,7 @@ ul.rss-feeds {
     top: 12%;
     position: relative;
 }
-.rss-like .fa-angle-up {
+.rss-like .fa {
     font-weight: bold;
     top: 50%;
     left: 50%;
@@ -106,4 +106,7 @@ ul.rss-feeds {
 .rss-item-title a {
     text-decoration: none;
     color: black;
+}
+.faded {
+    color: #e6e6e6;
 }
