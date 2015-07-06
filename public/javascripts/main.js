@@ -1,11 +1,16 @@
 (function($) {
     var $rssItems = $('.rss-feeds')
+      , $loadMoreBtn = $('.rss-load-more')
       , socket = io()
       , cookie = document.cookie.match(/rssapp\=[^\;]*/);
     cookie = cookie[0].replace('rssapp=', '');
 
-    socket.on('rss-items', function(rssItems) {
+    $loadMoreBtn.on('click', function(evt) {
+        evt.preventDefault();
+        socket.emit('load more');
+    });
 
+    socket.on('rss-items', function(rssItems) {
         $rssItems.empty();
         rssItems.forEach(function(item) {
             var likeCount = item.likes.length ? item.likes.length : 0
