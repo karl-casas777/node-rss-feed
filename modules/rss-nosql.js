@@ -41,6 +41,31 @@ var rssNosql = {
       return o;
     });
   },
+  search: function(q, offset, limit, sortBy, fxn) {
+    db.all(function(o) {
+      if (o.title.indexOf(q) >= 0) {
+        return o;
+      }
+    }, function(err, os){
+      os.sort(function(a, b) {
+        var sortInt = 0;
+        for (var column in sortBy) {
+          if (sortBy.hasOwnProperty(column)) {
+            var av = typeof a[column] == typeof [] ? a[column].length: a[column];
+            var bv = typeof b[column] == typeof [] ? b[column].length: b[column];
+
+            sortInt = (av < bv) ? -sortBy[column] : sortBy[column];
+            if (av != bv) break;
+          }
+        }
+
+        return sortInt;
+      });
+
+      os = os.slice(offset, limit);
+      fxn(os);
+    });
+  },
   // sortBy param should be an object with keys as the column 
   // and value as -1 for descending and 1 for acsending
   // ex. sort by id descending and name ascending

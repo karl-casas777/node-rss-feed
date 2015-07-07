@@ -43,10 +43,13 @@ var FeedParser = require('feedparser')
     processRSS: function() {
       var rss = this;
       while (item = rss.read()) {
-        var source = rss.meta.link.match(/\/\/[^\/]*/)
-          , row = {
+        var source = rss.meta.link.match(/\/\/[^\/]*/);
+        source = source[0].replace('//', '');
+        source = source.replace('www.', '');
+
+        var row = {
           id: item.guid,
-          source: source[0].replace('//', ''),
+          source: source,
           title: item.title,
           link: item.link,
           guid: item.guid,

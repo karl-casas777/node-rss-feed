@@ -1,6 +1,7 @@
 (function($) {
     var $rssItems = $('.rss-feeds')
       , $loadMoreBtn = $('.rss-load-more')
+      , $rssSearch = $('.rss-search')
       , socket = io()
       , cookie = document.cookie.match(/rssapp\=[^\;]*/);
     cookie = cookie[0].replace('rssapp=', '');
@@ -8,6 +9,12 @@
     $loadMoreBtn.on('click', function(evt) {
         evt.preventDefault();
         socket.emit('load more');
+    });
+
+    $rssSearch.on('keydown', function(evt) {
+        if (evt.keyCode == 13) {
+            socket.emit('search for', $rssSearch.val());
+        }
     });
 
     socket.on('rss-items', function(rssItems) {
@@ -21,7 +28,7 @@
               , $li = $(
                     '<li class="rss-item">'+
                         '<div class="rss-content">'+
-                            '<h5>MEDIUM.COM</h5>'+
+                            '<h5>'+item.source.toUpperCase()+'</h5>'+
                             '<p class="rss-item-title">'+
                                 '<a href="'+item.link+'" target="_blank">'+item.title+'</a>'+
                             '</p>'+

@@ -2,7 +2,7 @@ var rssFeeds = require('./rss-feeds')
   , cookie = require('cookie')
   , db = rssFeeds.config.database
   , offset = 0
-  , limit = 1
+  , limit = 5
   , itemSort = {
     likes: -1, //descending likes
     date: -1   //descending date
@@ -15,22 +15,44 @@ module.exports = function(server) {
   io.on('connection', function(socket) {
     var cookies = cookie.parse(socket.client.request.headers.cookie)
       , sockOffset = offset
-      , sockLimit = limit;
+      , sockLimit = limit
+      , q;
 
     var loadRssItems = function() {
-      db.items(function(err, items) {
-        socket.emit('rss-items', items);
-      }, sockOffset, sockLimit, itemSort);
+      if (q) {
+        searchRssItems(q);
+      }
+      else {
+        db.items(function(err, items) {
+          socket.emit('rss-items', items);
+        }, sockOffset, sockLimit, itemSort);
+      }
     };
     loadRssItems();
+
+    var searchRssItems = function(q) {
+      var callback = function(items) {
+        socket.emit('rss-items', items);
+      };
+      db.search(q, sockOffset, sockLimit, itemSort, callback);
+    }
 
     socket.on('like rss', function(id) {
       db.like(id, cookies.rssapp);
     });
 
     socket.on('load more', function() {
-      sockLimit += 1;
+      sockLimit += 5;
       loadRssItems();
+    });
+
+    socket.on('search for', function(search) {
+      if (q != search) {
+        sockOffset = offset;
+        sockLimit = limit;
+        q = search;
+        searchRssItems(q);
+      }
     });
 
     setInterval(loadRssItems, 5000);
