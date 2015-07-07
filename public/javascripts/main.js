@@ -4,7 +4,7 @@
       , $rssSearch = $('.rss-search')
       , socket = io()
       , cookie = document.cookie.match(/rssapp\=[^\;]*/);
-    cookie = cookie[0].replace('rssapp=', '');
+    cookie = (cookie && cookie.length) ? cookie[0].replace('rssapp=', '') : '';
 
     $loadMoreBtn.on('click', function(evt) {
         evt.preventDefault();
