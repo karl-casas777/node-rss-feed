@@ -1,6 +1,6 @@
 var cookieCreator = function(req, res, next) {
   var cookie = req.cookies.rssapp;
-  if (cookie === undefined)
+  if (!cookie)
   {
     var uniqnum = Math.random().toString();
     uniqnum = uniqnum.substring(2, uniqnum.length);
