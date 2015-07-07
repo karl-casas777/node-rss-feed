@@ -13,7 +13,8 @@ module.exports = function(server) {
   var io = require('socket.io')(server);
 
   io.on('connection', function(socket) {
-    var cookies = cookie.parse(socket.client.request.headers.cookie)
+    var cookieHeader = socket.client.request.headers.cookie
+      , cookies = cookieHeader ? cookie.parse(cookieHeader) : {rssapp: ''}
       , sockOffset = offset
       , sockLimit = limit
       , q;
