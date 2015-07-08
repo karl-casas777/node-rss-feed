@@ -1,3 +1,6 @@
+body {
+    margin: 0 0 100px;
+}
 .header {
     height: 100px;
     border-bottom: solid 2px #f0f0f0;
@@ -80,11 +83,15 @@ article h5 {
     text-decoration: none;
     color: #e2482c;
 }
-.redlink:hover {
+.redlink:link {
     text-decoration: none;
     color: #e2482c;
 }
 .redlink:visited {
+    text-decoration: none;
+    color: #e2482c;
+}
+.redlink:hover {
     text-decoration: none;
     color: #e2482c;
 }
