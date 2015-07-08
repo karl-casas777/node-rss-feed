@@ -3,8 +3,17 @@
       , $loadMoreBtn = $('.load-more')
       , $loadMoreBtnLoading = $loadMoreBtn.find('.fa-refresh')
       , $rssSearch = $('.rss-search')
+      , $searchIcon = $('.search-icon .fa-search')
       , socket = io()
       , cookie = document.cookie.match(/rssapp\=[^\;]*/);
+
+    $searchIcon.loading = function() {
+        $searchIcon.removeClass('fa-search').addClass('fa-spinner').addClass('fa-spin');
+    };
+    $searchIcon.stopLoading = function() {
+        $searchIcon.removeClass('fa-spinner').removeClass('fa-spin').addClass('fa-search');
+    };
+
     cookie = (cookie && cookie.length) ? cookie[0].replace('rssapp=', '') : '';
 
     $loadMoreBtn.on('click', function(evt) {
@@ -16,12 +25,14 @@
     $rssSearch.on('keydown', function(evt) {
         if (evt.keyCode == 13) {
             socket.emit('search for', $rssSearch.val());
+            $searchIcon.loading();
         }
     });
 
     socket.on('rss-items', function(rssItems) {
         $rssItems.empty();
         $loadMoreBtnLoading.removeClass('fa-spin');
+        $searchIcon.stopLoading();
         rssItems.forEach(function(item) {
             var likeCount = item.likes.length ? item.likes.length : 0
               , $likeImg = $('<i class="fa fa-angle-up"></i>')

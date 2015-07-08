@@ -13,8 +13,9 @@
         <div class="container-fluid header">
             <div class="row">
                 <img class="col-xs-1 col-xs-offset-2 padding-less" src="/images/ux.png" alt="ux">
-                <div class="col-xs-6 searchbox">
-                    <input class="rss-search" type="text">
+                <div class="col-xs-6 searchbox input-group">
+                    <span class="input-group-addon search-icon"><i class="fa fa-search"></i></span>
+                    <input class="rss-search form-control" type="text">
                 </div>
             </div>
         </div>
