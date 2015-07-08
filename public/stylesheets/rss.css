@@ -29,9 +29,13 @@ div.searchbox {
     border-radius: 3px;
     border: solid 1px #f0f0f0;
     background: #f0f0f0;
+    box-shadow: none;
+    padding-left: 0px;
 }
 .rss-search:focus {
-    outline: none
+    outline: none;
+    border-color: #f0f0f0;
+    box-shadow: none;
 }
 .padding-less {
     padding: 0;
