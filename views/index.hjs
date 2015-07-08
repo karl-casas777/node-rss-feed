@@ -20,34 +20,10 @@
         </div>
         <div class="container-fluid padding-less">
             <ul class="list-unstyled rss-list">
-                <li class="row">
-                    <div class="col-xs-1 col-xs-offset-2 padding-less likebox">
-                        <a class="redlink" href="">^</a>
-                        <strong>11</strong>
-                    </div>
-                    <article class="col-xs-6 contentbox">
-                        <h5 class="text-uppercase">medium.com</h5>
-                        <p>
-                            Want people to use your product? Use it yourself.
-                        </p>
-                    </article>
-                </li>
-                <li class="row">
-                    <div class="col-xs-1 col-xs-offset-2 padding-less likebox">
-                        <a class="redlink" href="">^</a>
-                        <strong>11</strong>
-                    </div>
-                    <article class="col-xs-6 contentbox">
-                        <h5 class="text-uppercase">medium.com</h5>
-                        <p>
-                            Want people to use your product? Use it yourself.
-                        </p>
-                    </article>
-                </li>
             </ul>
             <div class="row">
                 <a class="load-more redlink col-xs-7 col-xs-offset-2 padding-less" href="">
-                    <i class="fa fa-refresh"></i>
+                    <i class="fa fa-refresh fa-spin"></i>
                     Load More
                 </a>
             </div>
