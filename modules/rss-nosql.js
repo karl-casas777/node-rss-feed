@@ -43,7 +43,7 @@ var rssNosql = {
   },
   search: function(q, offset, limit, sortBy, fxn) {
     db.all(function(o) {
-      if (o.title.indexOf(q) >= 0) {
+      if (o.title.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
         return o;
       }
     }, function(err, os){
