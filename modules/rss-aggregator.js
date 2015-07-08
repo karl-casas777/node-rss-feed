@@ -2,7 +2,7 @@ var rssFeeds = require('./rss-feeds')
   , cookie = require('cookie')
   , db = rssFeeds.config.database
   , offset = 0
-  , limit = 5
+  , limit = rssFeeds.config.firstPage
   , itemSort = {
     likes: -1, //descending likes
     date: -1   //descending date
@@ -20,9 +20,7 @@ module.exports = function(server) {
       , q;
 
     var loadRssItems = function() {
-      if (q) {
-        searchRssItems(q);
-      }
+      if (q) searchRssItems(q);
       else {
         db.items(function(err, items) {
           socket.emit('rss-items', items);
@@ -43,7 +41,7 @@ module.exports = function(server) {
     });
 
     socket.on('load more', function() {
-      sockLimit += 5;
+      sockLimit += rssFeeds.config.perPage;
       loadRssItems();
     });
 

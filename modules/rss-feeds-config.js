@@ -4,5 +4,7 @@ module.exports = {
     'https://medium.com/feed/surviving-the-future',
     'http://rss.cnn.com/rss/cnn_topstories.rss'
   ],
-  database: require('./rss-nosql')
+  database: require('./rss-nosql'),
+  firstPage: 5,
+  perPage: 5
 };
