@@ -1,6 +1,7 @@
 (function($) {
-    var $rssItems = $('.rss-feeds')
-      , $loadMoreBtn = $('.rss-load-more')
+    var $rssItems = $('.rss-list')
+      , $loadMoreBtn = $('.load-more')
+      , $loadMoreBtnLoading = $loadMoreBtn.find('.fa-refresh')
       , $rssSearch = $('.rss-search')
       , socket = io()
       , cookie = document.cookie.match(/rssapp\=[^\;]*/);
@@ -9,6 +10,7 @@
     $loadMoreBtn.on('click', function(evt) {
         evt.preventDefault();
         socket.emit('load more');
+        $loadMoreBtnLoading.addClass('fa-spin');
     });
 
     $rssSearch.on('keydown', function(evt) {
@@ -19,20 +21,21 @@
 
     socket.on('rss-items', function(rssItems) {
         $rssItems.empty();
+        $loadMoreBtnLoading.removeClass('fa-spin');
         rssItems.forEach(function(item) {
             var likeCount = item.likes.length ? item.likes.length : 0
               , $likeImg = $('<i class="fa fa-angle-up"></i>')
-              , $likeBtn = $('<a class="custom-link" href="#"></a>').append($likeImg)
-              , $likeCount = $('<span>'+likeCount+'</span>')
-              , $likeCont = $('<div class="rss-like"></div>')
+              , $likeBtn = $('<a class="redlink" href=""></a>').append($likeImg)
+              , $likeCount = $('<strong>'+likeCount+'</strong>')
+              , $likeCont = $('<div class="col-xs-1 col-xs-offset-2 padding-less likebox"></div>')
               , $li = $(
-                    '<li class="rss-item">'+
-                        '<div class="rss-content">'+
-                            '<h5>'+item.source.toUpperCase()+'</h5>'+
-                            '<p class="rss-item-title">'+
-                                '<a href="'+item.link+'" target="_blank">'+item.title+'</a>'+
+                    '<li class="row">'+
+                        '<article class="col-xs-6 contentbox">'+
+                            '<h5 class="text-uppercase">'+item.source+'</h5>'+
+                            '<p>'+
+                                '<a href="'+item.link+'" target="_blank" class="subtle-link">'+item.title+'</a>'+
                             '</p>'+
-                        '</div>'+
+                        '</article>'+
                     '</li>'
                 );
 

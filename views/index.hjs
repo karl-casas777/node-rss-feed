@@ -4,18 +4,53 @@
         <meta charset="utf-8">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="/stylesheets/rss.css">
         <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
         <title>Untitled</title>
     </head>
     <body>
-        <div class="rss-header">
-            <img class="rss-logo" src="images/ux.png" alt="ux">
-            <input class="rss-search focus-none" type="text">
+        <div class="container-fluid header">
+            <div class="row">
+                <img class="col-xs-1 col-xs-offset-2 padding-less" src="/images/ux.png" alt="ux">
+                <div class="col-xs-6 searchbox">
+                    <input class="rss-search" type="text">
+                </div>
+            </div>
         </div>
-        <div class="rss-container">
-            <ul class="rss-feeds"></ul>
-            <a class="rss-load-more custom-link" href="#"><i class="fa fa-refresh"></i>Load more</a>
+        <div class="container-fluid padding-less">
+            <ul class="list-unstyled rss-list">
+                <li class="row">
+                    <div class="col-xs-1 col-xs-offset-2 padding-less likebox">
+                        <a class="redlink" href="">^</a>
+                        <strong>11</strong>
+                    </div>
+                    <article class="col-xs-6 contentbox">
+                        <h5 class="text-uppercase">medium.com</h5>
+                        <p>
+                            Want people to use your product? Use it yourself.
+                        </p>
+                    </article>
+                </li>
+                <li class="row">
+                    <div class="col-xs-1 col-xs-offset-2 padding-less likebox">
+                        <a class="redlink" href="">^</a>
+                        <strong>11</strong>
+                    </div>
+                    <article class="col-xs-6 contentbox">
+                        <h5 class="text-uppercase">medium.com</h5>
+                        <p>
+                            Want people to use your product? Use it yourself.
+                        </p>
+                    </article>
+                </li>
+            </ul>
+            <div class="row">
+                <a class="load-more redlink col-xs-7 col-xs-offset-2 padding-less" href="">
+                    <i class="fa fa-refresh"></i>
+                    Load More
+                </a>
+            </div>
         </div>
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="socket.io/socket.io.js"></script>
