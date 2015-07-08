@@ -1,8 +1,9 @@
 module.exports = {
   interval: 5000,
   sources: [
-    'https://medium.com/feed/surviving-the-future',
-    'http://rss.cnn.com/rss/cnn_topstories.rss'
+    'http://www.smashingmagazine.com/feed',
+    'https://hacks.mozilla.org/feed',
+    'http://feeds.feedburner.com/CssTricks?format=xml'
   ],
   database: require('./rss-nosql'),
   firstPage: 5,
