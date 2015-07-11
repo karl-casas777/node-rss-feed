@@ -1,5 +1,5 @@
-var nosql = require('nosql')
-  , fs = require('fs');
+var nosql = require('nosql'), 
+    fs = require('fs');
   
 try {
   fs.mkdirSync('database');
@@ -12,7 +12,7 @@ db.stored.create('insertIfNew', function(nosql, next, params) {
       return o;
     }
   }, function(err, o) {
-    if (o == null) {
+    if (o === null) {
       nosql.insert(params);
     }
     next();
@@ -27,7 +27,7 @@ var rssNosql = {
         return o;
       }
     }, function(err, o) {
-      if (o == null) {
+      if (o === null) {
         db.insert(row);
       }
     }); 

@@ -1,11 +1,13 @@
 (function($) {
-    var $rssItems = $('.rss-list')
-      , $loadMoreBtn = $('.load-more')
-      , $loadMoreBtnLoading = $loadMoreBtn.find('.fa-refresh')
-      , $rssSearch = $('.rss-search')
-      , $searchIcon = $('.search-icon .fa-search')
-      , socket = io()
-      , cookie = document.cookie.match(/rssapp\=[^\;]*/);
+    'use strict';
+        
+    var $rssItems = $('.rss-list'), 
+        $loadMoreBtn = $('.load-more'), 
+        $loadMoreBtnLoading = $loadMoreBtn.find('.fa-refresh'), 
+        $rssSearch = $('.rss-search'), 
+        $searchIcon = $('.search-icon .fa-search'), 
+        socket = io(), 
+        cookie = document.cookie.match(/rssapp\=[^\;]*/);
 
     $searchIcon.loading = function() {
         $searchIcon.removeClass('fa-search').addClass('fa-spinner').addClass('fa-spin');
@@ -34,12 +36,12 @@
         $loadMoreBtnLoading.removeClass('fa-spin');
         $searchIcon.stopLoading();
         rssItems.forEach(function(item) {
-            var likeCount = item.likes.length ? item.likes.length : 0
-              , $likeImg = $('<i class="fa fa-angle-up"></i>')
-              , $likeBtn = $('<a class="redlink" href=""></a>').append($likeImg)
-              , $likeCount = $('<strong>'+likeCount+'</strong>')
-              , $likeCont = $('<div class="col-xs-1 col-xs-offset-2 padding-less likebox"></div>')
-              , $li = $(
+            var likeCount = item.likes.length ? item.likes.length : 0, 
+                $likeImg = $('<i class="fa fa-angle-up"></i>'), 
+                $likeBtn = $('<a class="redlink" href=""></a>').append($likeImg), 
+                $likeCount = $('<strong>'+likeCount+'</strong>'), 
+                $likeCont = $('<div class="col-xs-1 col-xs-offset-2 padding-less likebox"></div>'), 
+                $li = $(
                     '<li class="row">'+
                         '<article class="col-xs-6 contentbox">'+
                             '<h5 class="text-uppercase">'+item.source+'</h5>'+

@@ -1,7 +1,7 @@
-var FeedParser = require('feedparser')
-  , request = require('request')
-  , updater
-  , rssFeeds = {
+var FeedParser = require('feedparser'), 
+    request = require('request'), 
+    updater, 
+    rssFeeds = {
       config: require('./rss-feeds-config'),
       autoUpdate: function(auto, interval) {
         if (!updater && auto)
@@ -15,8 +15,8 @@ var FeedParser = require('feedparser')
         });
       },
       accessRSS: function(url, fxn) {
-        var req = request(url)
-          , feedparser = new FeedParser();
+        var req = request(url), 
+            feedparser = new FeedParser();
 
         req.on('error', function (error) {
           console.log('Request Error `'+url+'`: '+error);
@@ -38,8 +38,9 @@ var FeedParser = require('feedparser')
         feedparser.on('readable', fxn);
       },
       processRSS: function() {
-        var rss = this;
-        while (item = rss.read()) {
+        var rss = this,
+            item = rss.read();
+        while (item) {
           var source = rss.meta.link.match(/\/\/[^\/]*/);
           source = source[0].replace('//', '');
           source = source.replace('www.', '');
@@ -54,6 +55,7 @@ var FeedParser = require('feedparser')
             likes: []
           };
           rssFeeds.config.database.insert(row);
+          item = rss.read();
         }
       }
     };

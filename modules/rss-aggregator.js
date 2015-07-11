@@ -1,23 +1,23 @@
-var rssFeeds = require('./rss-feeds')
-  , cookie = require('cookie')
-  , db = rssFeeds.config.database
-  , offset = 0
-  , limit = rssFeeds.config.firstPage
-  , itemSort = {
-    likes: -1, //descending likes
-    date: -1   //descending date
-  };
+var rssFeeds = require('./rss-feeds'), 
+    cookie = require('cookie'), 
+    db = rssFeeds.config.database, 
+    offset = 0, 
+    limit = rssFeeds.config.firstPage, 
+    itemSort = {
+      likes: -1, //descending likes
+      date: -1   //descending date
+    };
 rssFeeds.autoUpdate(true);
 
 module.exports = function(server) {
   var io = require('socket.io')(server);
 
   io.on('connection', function(socket) {
-    var cookieHeader = socket.client.request.headers.cookie
-      , cookies = cookieHeader ? cookie.parse(cookieHeader) : {rssapp: ''}
-      , sockOffset = offset
-      , sockLimit = limit
-      , q;
+    var cookieHeader = socket.client.request.headers.cookie, 
+        cookies = cookieHeader ? cookie.parse(cookieHeader) : {rssapp: ''}, 
+        sockOffset = offset, 
+        sockLimit = limit, 
+        q;
 
     var loadRssItems = function() {
       if (q) searchRssItems(q);
@@ -34,7 +34,7 @@ module.exports = function(server) {
         socket.emit('rss-items', items);
       };
       db.search(q, sockOffset, sockLimit, itemSort, callback);
-    }
+    };
 
     socket.on('like rss', function(id) {
       db.like(id, cookies.rssapp);
