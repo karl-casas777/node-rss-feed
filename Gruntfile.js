@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         jshint: {
             all: [
-                'bin/**/*.js',
+                'bin/**/*',
                 'modules/**/*.js',
                 'public/javascripts/**/*.js',
                 'app.js',
