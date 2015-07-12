@@ -1,0 +1,3 @@
+var feed = require('../modules/rss-feeds');
+feed.autoUpdate(true);
+console.log('autoupdate rss feed started');

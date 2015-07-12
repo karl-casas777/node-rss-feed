@@ -1,0 +1,24 @@
+var cluster = require('cluster');
+var sticky = require('sticky-session');
+var server = require('./www');
+var utility = require('../modules/utility');
+var port = utility.normalizePort(process.env.PORT || '3000');
+var cpuCount = require('os').cpus().length;
+
+sticky(cpuCount - 2, function() {
+  return server();
+}).listen(port, function() {
+  console.log('server started on port '+port);
+});
+
+if (cluster.isMaster) {
+  var spawnUpdater = function() {
+    cluster.settings.exec = 'bin/feedupdater';
+    var worker = cluster.fork();
+    worker.on('exit', function() {
+      console.error('autoupdate rss feed: worker died');
+      spawnUpdater();
+    });
+  }
+  spawnUpdater();
+}

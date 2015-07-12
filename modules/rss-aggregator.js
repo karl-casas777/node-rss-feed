@@ -1,13 +1,12 @@
-var rssFeeds = require('./rss-feeds'), 
+var feedConfig = require('./rss-feeds-config'), 
     cookie = require('cookie'), 
-    db = rssFeeds.config.database, 
+    db = feedConfig.database, 
     offset = 0, 
-    limit = rssFeeds.config.firstPage, 
+    limit = feedConfig.firstPage, 
     itemSort = {
       likes: -1, //descending likes
       date: -1   //descending date
     };
-rssFeeds.autoUpdate(true);
 
 module.exports = function(server) {
   var io = require('socket.io')(server);
@@ -41,7 +40,7 @@ module.exports = function(server) {
     });
 
     socket.on('load more', function() {
-      sockLimit += rssFeeds.config.perPage;
+      sockLimit += feedConfig.perPage;
       loadRssItems();
     });
 
