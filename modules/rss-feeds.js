@@ -4,8 +4,10 @@ var FeedParser = require('feedparser'),
     rssFeeds = {
       config: require('./rss-feeds-config'),
       autoUpdate: function(auto, interval) {
-        if (!updater && auto)
+        if (!updater && auto) {
           updater = setInterval(rssFeeds.updateFeed, interval || rssFeeds.config.interval);
+          console.log('autoupdate rss feed started');
+        }
         else if (!auto && updater)
           clearInterval(updater);
       },

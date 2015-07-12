@@ -9,18 +9,22 @@ if (cpuCount > 2) {
   sticky(cpuCount - 2, function() {
     return server();
   }).listen(port, function() {
-    console.log('server started on port '+port);
+    console.log('clustered http server started on port '+port);
   });
 }
 
 if (cluster.isMaster) {
+  if (cpuCount == 2) {
+    require('./www')(true);
+  }
   if (cpuCount == 1) {
-    cluster.settings.exec = 'bin/www';
+    cluster.setupMaster({ exec: 'bin/www' });
     cluster.fork();
   }
-  else {
+  if (cpuCount > 1) {
     var spawnUpdater = function() {
-      cluster.settings.exec = 'bin/feedupdater';
+      if (cpuCount == 2) cluster.setupMaster({exec: 'bin/feedupdater'});
+      else cluster.settings.exec = 'bin/feedupdater';
       var worker = cluster.fork();
       worker.on('exit', function() {
         console.error('autoupdate rss feed: worker died');
